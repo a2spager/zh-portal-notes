@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咪咕体育 · 赛事直通指南</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f8;
+            color: #1e1e2a;
+            line-height: 1.6;
+        }
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---- hero 深色头图 ---- */
+        .hero {
+            background: linear-gradient(145deg, #0d1117 0%, #1a2330 100%);
+            padding: 80px 0 70px;
+            color: #eaeef3;
+            border-bottom: 4px solid #facc15;
+        }
+        .hero .wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .hero h1 span {
+            color: #facc15;
+        }
+        .hero p {
+            max-width: 680px;
+            font-size: 1.15rem;
+            color: #b0bcc9;
+            margin-top: 6px;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: #2a3647;
+            color: #cbd5e1;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            align-self: flex-start;
+            border: 1px solid #3d4b5e;
+        }
+
+        /* ---- 卡片网格区 ---- */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 56px 0 20px;
+            color: #0f1822;
+            letter-spacing: -0.01em;
+        }
+        .section-sub {
+            color: #4a5568;
+            margin-bottom: 36px;
+            font-size: 1rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px 24px 28px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            transition: transform 0.15s ease, box-shadow 0.2s;
+            border: 1px solid #e9edf2;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+        }
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            display: inline-block;
+            background: #eef3f9;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1f2a3d;
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0e1a26;
+        }
+        .card p {
+            color: #2e3a48;
+            font-size: 0.98rem;
+        }
+        .card a {
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #a0b8e0;
+            transition: color 0.15s;
+        }
+        .card a:hover {
+            color: #0f3b8c;
+            border-bottom-color: #2563eb;
+        }
+
+        /* ---- 适合人群（特色列表）---- */
+        .audience-section {
+            margin: 50px 0 20px;
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 40px 32px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px 24px;
+            margin-top: 28px;
+        }
+        .audience-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .audience-item:last-of-type { border-bottom: none; }
+        .audience-badge {
+            background: #dae6f5;
+            color: #1e2b41;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+        .audience-item span {
+            color: #1d2b3a;
+        }
+
+        /* ---- 自然链接段落 ---- */
+        .link-paragraph {
+            background: white;
+            border-radius: 24px;
+            padding: 36px 32px;
+            margin: 40px 0 50px;
+            border-left: 6px solid #facc15;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.02);
+        }
+        .link-paragraph p {
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+        }
+        .link-paragraph a {
+            color: #b45309;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #fcd34d;
+            padding: 0 2px;
+            transition: background 0.15s;
+        }
+        .link-paragraph a:hover {
+            background: #fef3c7;
+            border-bottom-color: #b45309;
+        }
+
+        /* ---- FAQ 摘要小模块 ---- */
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            background: #eef3f8;
+            border-radius: 22px;
+            padding: 28px 30px;
+            margin-bottom: 50px;
+        }
+        .faq-mini-item {
+            flex: 1 1 240px;
+        }
+        .faq-mini-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0a1a2b;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .faq-mini-item h4::before {
+            content: "›";
+            font-size: 1.4rem;
+            color: #facc15;
+            font-weight: 700;
+        }
+        .faq-mini-item p {
+            color: #3a4b5e;
+            font-size: 0.93rem;
+        }
+
+        /* ---- footer ---- */
+        .footer-note {
+            text-align: center;
+            padding: 32px 0 28px;
+            color: #5a6a7c;
+            font-size: 0.9rem;
+            border-top: 1px solid #dce2ea;
+            margin-top: 10px;
+        }
+        .footer-note a {
+            color: #1f3a6b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 640px) {
+            .hero { padding: 60px 0 50px; }
+            .card-grid { gap: 18px; }
+            .audience-section { padding: 28px 18px; }
+            .link-paragraph { padding: 26px 20px; }
+            .faq-mini { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="wrapper">
+        <div class="hero-tag">⚽ 赛事聚合 · 一站直通</div>
+        <h1>想看什么比赛？<br><span>咪咕体育</span> 帮你理清楚</h1>
+        <p>不用在多个平台之间反复跳转——从五大联赛到CBA，从网球大满贯到电竞公开赛，用最少的步骤找到你想看的直播、回放与资讯。</p>
+    </div>
+</header>
+
+<main class="wrapper">
+
+    <!-- 用途卡片：主视觉 -->
+    <h2 class="section-title">📋 一眼看懂网站用途</h2>
+    <p class="section-sub">把「找比赛」变成一件顺手的事，而不是任务。</p>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">🏟️</div>
+            <h3>赛事直播聚合</h3>
+            <p>汇集中超、英超、意甲、NBA、CBA 等主流赛事的直播入口与赛程，省去翻多个 App 的麻烦。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📺</div>
+            <h3>回放 & 集锦</h3>
+            <p>错过直播？快速定位全场回放、进球集锦、赛后分析，时间线清晰，不用从头拖到尾。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🏀</div>
+            <h3>特色专题</h3>
+            <p>欧冠之夜、CBA 季后赛、电竞公开赛…… 按赛季和焦点战整理的专题页面，点击即达。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📡</div>
+            <h3>多端同步</h3>
+            <p>手机、平板、电脑、电视端内容打通，账号同步观看记录与收藏，随时续看。</p>
+        </div>
+    </div>
+
+    <!-- 适合人群 -->
+    <div class="audience-section">
+        <h3 style="font-size:1.6rem; font-weight:600;">👥 哪些人最适合用 <a href="https://zh-portal-migu.com" style="color:#1e3a5f; text-decoration:none; border-bottom:2px solid #facc15;">咪咕体育</a> ？</h3>
+        <div class="audience-grid">
+            <div class="audience-item"><span class="audience-badge">球迷</span><span>想第一时间看五大联赛 & 亚冠，不想错过关键战</span></div>
+            <div class="audience-item"><span class="audience-badge">篮球迷</span><span>NBA、CBA 常规赛+季后赛，回放和集锦安排明白</span></div>
+            <div class="audience-item"><span class="audience-badge">轻度观众</span><span>平时只看大赛、奥运、世界杯，需要清晰导航</span></div>
+            <div class="audience-item"><span class="audience-badge">电竞玩家</span><span>关注王者荣耀、LPL、KPL 赛事，直播入口直观</span></div>
+            <div class="audience-item"><span class="audience-badge">家庭用户</span><span>电视端大屏观看，一家人都能快速找到想看的比赛</span></div>
+        </div>
+    </div>
+
+    <!-- 自然链接段落：把链接融入内容 -->
+    <div class="link-paragraph">
+        <p><strong>如果你刚接触这个平台</strong>，不妨从首页的热门赛事卡片开始探索。比如今晚有英超双红会，或者 CBA 焦点战，通常会在醒目位置推荐。你不需要注册就能看到大部分赛程和结果，点击即可跳转至直播页。如果想要更完整的体验，建议登录账号——收藏的球队、关注的联赛都会出现在专属面板里。</p>
+        <p>其实很多人第一次用到 <a href="https://zh-portal-migu.com">咪咕体育</a> 是因为某场关键比赛，后来发现回放库很全，慢慢就成了日常看球习惯。不论是足球、篮球还是格斗、羽毛球，这里的赛事覆盖面比想象中宽。页面左侧的导航栏按联赛分类，右侧则是实时热门，用两次就能摸清门路。</p>
+        <p style="margin-bottom:0;">另外，<a href="https://zh-portal-migu.com">咪咕体育</a> 的移动端体验也不错，通勤时刷赛果、看短视频集锦很流畅。如果你总担心错过开球时间，可以打开赛前提醒功能，比赛前 15 分钟会有推送。整体来说，它更像一个“体育内容入口”，而不是单纯的直播列表。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <div class="faq-mini-item">
+            <h4>要不要下载 App？</h4>
+            <p>网页版可直接使用，手机浏览器也支持；但下载 App 后推送提醒、离线缓存更方便，看回放也更流畅。</p>
+        </div>
+        <div class="faq-mini-item">
+            <h4>哪些比赛免费？</h4>
+            <p>大部分赛程浏览、赛果、集锦免费；部分顶级联赛直播需要会员，具体以页面标注为准。</p>
+        </div>
+        <div class="faq-mini-item">
+            <h4>电视怎么看？</h4>
+            <p>智能电视或电视盒子安装对应客户端，登录同一账号即可同步收藏与观看记录。</p>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer-note">
+    <div class="wrapper">
+        <span>信息指南 · 非官方页面 · </span>
+        <a href="https://zh-portal-migu.com">咪咕体育</a>
+        <span style="margin-left:6px;">© 2025 内容仅供参考</span>
+    </div>
+</footer>
+
+</body>
+</html>
